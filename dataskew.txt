@@ -1,0 +1,6 @@
+大数据分析 数据倾斜问题研究
+
+              空值/异常值                    高频值
+join          数据清洗                       key值分裂 map端join
+groupby                                      map端聚合(hive.map.aggr) 两次聚合(hive.groupby.skewindata)					
+count(distinct)	reduce单机处理较慢 配合distinct		 	
