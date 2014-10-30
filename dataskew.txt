@@ -11,3 +11,4 @@ count(distinct) (1)map端聚合 两次聚合不能完全解决问题
 
 
 更加高级的优化
+set hive.optimize.skewjoin = true; 高频key提取出来用map-side-join
