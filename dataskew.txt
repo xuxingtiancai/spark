@@ -1,17 +1,17 @@
 大数据分析 数据倾斜问题研究
 
-高频key引起
+1 高频key引起
               空值/异常值                    高频值
 join          数据清洗                       key值分裂 map端join
 groupby                                      map端聚合(hive.map.aggr) 两次聚合(hive.groupby.skewindata, 跟狗屎一样)
-
-单机引起
-count(distinct) (1)map端聚合 两次聚合不能完全解决问题
-                (2)reduce单机处理较慢 配合distinct: select count(*) from (select distinct(col) from table); 	 	
-
-
 更加高级的优化
 set hive.optimize.skewjoin = true; 高频key提取出来用map-side-join
+
+2 单机引起
+count(distinct)
+sql改写
+select count(*) from (select distinct(col) from table); 	 	
+select a, count(*) from (select distinct(a, col) from table) group by a; 
 
 参考链接
 http://sunyi514.github.io/2013/09/01/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E4%B8%AD%E7%9A%84sql%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%EF%BC%88hive%E7%AF%87%EF%BC%89/
